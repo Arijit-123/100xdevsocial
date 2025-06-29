@@ -3,11 +3,21 @@ const prisma= new PrismaClient();
 
 
 async function main(){
-    await prisma.user.createMany({
+    // await prisma.user.createMany({
+    //     data:[
+
+    //  { username: 'Tilkul', email: 'tilkur@dev.com' },
+    // { username: 'Balaji', email: 'Bala@dev.com' },
+
+    //     ],
+    // })
+
+     await prisma.post.createMany({
         data:[
 
-     { username: 'alice', email: 'alice@dev.com' },
-    { username: 'bob', email: 'bob@dev.com' },
+     { content: 'Building this startup from scratch using python', authorId: 5},
+    
+     { content: 'Ocaml is the new language', authorId: 4 },
 
         ],
     })
