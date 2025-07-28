@@ -15,4 +15,10 @@ export class PostResolver {
     return this.postService.findAll();
   }
 
+@Query(() => Post)                       
+getPostById(@Args('id', { type: () => Int }) id: number) {     
+  return this.postService.findSome(id);
+}
+
+
 }

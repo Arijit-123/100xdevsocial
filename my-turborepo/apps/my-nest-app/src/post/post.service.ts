@@ -10,4 +10,12 @@ constructor(private prisma: PrismaService) {}
     return await this.prisma.post.findMany();
   }
 
+
+async findSome(id: number) {
+  return await this.prisma.post.findMany({
+    where: {
+      authorId: id  
+    }
+  });
+   }
 }

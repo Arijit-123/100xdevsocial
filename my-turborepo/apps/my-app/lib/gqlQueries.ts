@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import {gql} from "graphql-tag";
 
 export const GET_POSTS = gql`
   query GetPosts {
@@ -8,4 +8,15 @@ export const GET_POSTS = gql`
      authorId
   }
 }
+`;
+
+
+export const GET_USER_POSTS= gql`
+query GetPostsByUser($userid: Int!) {
+  getPostById(id: $userid) {
+    content
+    createdAt
+  }
+}
+
 `;

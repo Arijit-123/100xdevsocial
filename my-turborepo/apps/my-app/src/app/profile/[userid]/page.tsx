@@ -3,13 +3,18 @@
 import React, { useState } from "react";
 import { Camera, Pencil } from "lucide-react";
 import Link from "next/link";
-
+import Posts from "@/components/ui/Posts";
 type Props={
-username:string;
+  params:{
+    userid:number;
+  }
 }
-const ProfilePage = ({username}:Props) => {
+const ProfilePage = ({ params }: Props) => {
   const [activeTab, setActiveTab] = useState("about");
   const [jobexp,setJobexp]=useState(0)
+
+  // console.log("userid in dynamic route", params?.userid);
+  // const userid = parseInt(params?.userid);
   return (
     <div className="max-w-4xl mx-auto mt-10 p-4">
       <div className="bg-white p-6 shadow-xl rounded-2xl">
@@ -53,9 +58,9 @@ const ProfilePage = ({username}:Props) => {
                   ? "text-blue-600 border-b-2 border-blue-600"
                   : "text-gray-600 hover:text-blue-600"
               }`}
-              onClick={() => setActiveTab("contact")}
+              onClick={() => setActiveTab("Posts")}
             >
-              Contact
+              Posts
             </button>
             <button
               className={`py-2 px-4 text-center font-medium ${
@@ -85,17 +90,15 @@ const ProfilePage = ({username}:Props) => {
               </div>
               </>
             )}
-            {activeTab === "contact" && (
+            {activeTab === "Posts" && (
               <div>
-                <p>Email: arijit@example.com</p>
-                <p>LinkedIn: linkedin.com/in/arijitkaran</p>
-                <p>GitHub: github.com/arijitkaran</p>
+              <Posts userid={params?.userid}/>
               </div>
             )}
             {activeTab === "settings" && (
               <div>
                 <p>Account settings and preferences will appear here.</p>
-                <Link href={`/profile/${username}/edit`}>
+                <Link href={`/profile/${params?.userid}/edit`}>
                 <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md shadow">
                   <Pencil size={20} className="text-gray-600" />
                   Edit Profile
